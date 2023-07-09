@@ -22,6 +22,21 @@ export class AuthService {
     return null;
   }
 
+  async validateUserById(userId: string): Promise<any> {
+    const employee = await this.employeeService.findById(userId);
+    if (employee) {
+      const { password, ...result } = employee;
+      return result;
+    }
+
+    const admin = await this.adminService.findByUsername(userId);
+    if (admin) {
+      const { password, ...result } = admin;
+      return result;
+    }
+
+    return null;
+  }
   async signup(employeeData: any): Promise<any> {
     const { username, password } = employeeData;
     const employee = await this.employeeService.createEmployee(username, password);
