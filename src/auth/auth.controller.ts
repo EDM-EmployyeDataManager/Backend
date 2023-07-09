@@ -14,4 +14,14 @@ export class AuthController {
     const admin = await this.authService.validateAdmin(username, password);
     return this.authService.login(employee, admin);
   }
+
+  @Post('signup')
+  async signup(@Body() employeeData: any) {
+    try {
+      const employee = await this.authService.signup(employeeData);
+      return { success: true, data: employee };
+    } catch (error) {
+      return { success: false, message: 'Failed to create employee' };
+    }
+  }
 }

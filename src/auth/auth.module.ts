@@ -12,7 +12,7 @@ import { EmployeeModule } from '../employee/employee.module';
   imports: [
     MongooseModule,
     JwtModule.register({
-      secret: 'your-secret-key', // Replace with your own secret key
+      secret: '6571370', // Replace with your own secret key
       signOptions: { expiresIn: '1h' }, // Adjust the token expiration as needed
     }),
     AdminModule,
